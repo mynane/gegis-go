@@ -11,6 +11,46 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
+  /email/:
+    post:
+      tags:
+      - email
+      description: 新增邮箱
+      operationId: EmailController.新增邮箱
+      parameters:
+      - in: body
+        name: body
+        description: 邮箱
+        required: true
+        schema:
+          $ref: '#/definitions/models.Email'
+      responses:
+        "200":
+          description: '{int} models.user.User.Id'
+        "400":
+          description: Invalid email supplied
+        "404":
+          description: User not found
+  /email/{email}:
+    get:
+      tags:
+      - email
+      description: 查询邮箱
+      operationId: EmailController.查询邮箱
+      parameters:
+      - in: path
+        name: email
+        description: 邮箱
+        required: true
+        schema:
+          $ref: '#/definitions/.email'
+      responses:
+        "200":
+          description: '{int} models.email.Email'
+        "400":
+          description: Invalid email supplied
+        "404":
+          description: User not found
   /tag/:
     get:
       tags:
@@ -140,34 +180,47 @@ paths:
         "404":
           description: User not found
 definitions:
+  .email:
+    type: object
+  models.Email:
+    title: Email
+    type: object
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+        format: int64
+      time:
+        type: string
   models.Tag:
     title: Tag
     type: object
     properties:
-      Id:
+      id:
         type: integer
         format: int64
-      Name:
+      name:
         type: string
   models.User:
     title: User
     type: object
     properties:
-      Age:
+      age:
         type: integer
         format: int64
-      Email:
+      email:
         type: string
-      Id:
+      id:
         type: integer
         format: int64
-      Name:
+      name:
         type: string
-      Phone:
+      phone:
         type: string
-      Pwd:
+      pwd:
         type: string
-      Sex:
+      sex:
         type: string
 tags:
 - name: user

@@ -927,14 +927,61 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="234" parent="3" name="post">
+    <table id="234" parent="3" name="email">
+      <Comment>邮箱订阅</Comment>
+    </table>
+    <table id="235" parent="3" name="post">
       <Comment>文章</Comment>
     </table>
-    <table id="235" parent="3" name="tag">
+    <table id="236" parent="3" name="tag">
       <Comment>标签</Comment>
     </table>
-    <table id="236" parent="3" name="user"/>
-    <column id="237" parent="234" name="id">
+    <table id="237" parent="3" name="user"/>
+    <column id="238" parent="234" name="id">
+      <Position>1</Position>
+      <Comment>表id</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="239" parent="234" name="email">
+      <Position>2</Position>
+      <Comment>邮箱</Comment>
+      <DataType>char(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="240" parent="234" name="time">
+      <Position>3</Position>
+      <Comment>加入时间</Comment>
+      <DataType>char(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="241" parent="234" name="email_id_uindex">
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="242" parent="234" name="email_email_uindex">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="243" parent="234" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="244" parent="234" name="email_id_uindex">
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>email_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="245" parent="234" name="email_email_uindex">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email_email_uindex</UnderlyingIndexName>
+    </key>
+    <column id="246" parent="235" name="id">
       <Position>1</Position>
       <Comment>文章id</Comment>
       <DataType>int(11)|0s</DataType>
@@ -942,35 +989,35 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="234" name="content">
+    <column id="247" parent="235" name="content">
       <Position>2</Position>
       <Comment>文章内容</Comment>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="234" name="tags">
+    <column id="248" parent="235" name="tags">
       <Position>3</Position>
       <Comment>标签</Comment>
       <DataType>char(60)|0s</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="240" parent="234" name="post_id_uindex">
+    <index id="249" parent="235" name="post_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="241" parent="234" name="PRIMARY">
+    <key id="250" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="242" parent="234" name="post_id_uindex">
+    <key id="251" parent="235" name="post_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>post_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="243" parent="235" name="id">
+    <column id="252" parent="236" name="id">
       <Position>1</Position>
       <Comment>标签id</Comment>
       <DataType>int(11)|0s</DataType>
@@ -978,36 +1025,36 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="235" name="name">
+    <column id="253" parent="236" name="name">
       <Position>2</Position>
       <Comment>标签名称</Comment>
       <DataType>char(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="245" parent="235" name="tag_id_uindex">
+    <index id="254" parent="236" name="tag_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="246" parent="235" name="tag_name_uindex">
+    <index id="255" parent="236" name="tag_name_uindex">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="247" parent="235" name="PRIMARY">
+    <key id="256" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="248" parent="235" name="tag_id_uindex">
+    <key id="257" parent="236" name="tag_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>tag_id_uindex</UnderlyingIndexName>
     </key>
-    <key id="249" parent="235" name="tag_name_uindex">
+    <key id="258" parent="236" name="tag_name_uindex">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>tag_name_uindex</UnderlyingIndexName>
     </key>
-    <column id="250" parent="236" name="name">
+    <column id="259" parent="237" name="name">
       <Position>1</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(40)|0s</DataType>
@@ -1015,74 +1062,74 @@
       <ColumnKind>normal</ColumnKind>
       <Collation>latin1_swedish_ci</Collation>
     </column>
-    <column id="251" parent="236" name="pwd">
+    <column id="260" parent="237" name="pwd">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>latin1_swedish_ci</Collation>
     </column>
-    <column id="252" parent="236" name="age">
+    <column id="261" parent="237" name="age">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="236" name="sex">
+    <column id="262" parent="237" name="sex">
       <Position>4</Position>
       <DataType>varchar(8)|0s</DataType>
       <DefaultExpression>&apos;未知&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="236" name="email">
+    <column id="263" parent="237" name="email">
       <Position>5</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>latin1_swedish_ci</Collation>
     </column>
-    <column id="255" parent="236" name="phone">
+    <column id="264" parent="237" name="phone">
       <Position>6</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>latin1_swedish_ci</Collation>
     </column>
-    <column id="256" parent="236" name="id">
+    <column id="265" parent="237" name="id">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="257" parent="236" name="name_UNIQUE">
+    <index id="266" parent="237" name="name_UNIQUE">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="258" parent="236" name="email_UNIQUE">
+    <index id="267" parent="237" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="259" parent="236" name="id_UNIQUE">
+    <index id="268" parent="237" name="id_UNIQUE">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="260" parent="236" name="PRIMARY">
+    <key id="269" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="261" parent="236" name="name_UNIQUE">
+    <key id="270" parent="237" name="name_UNIQUE">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>name_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="262" parent="236" name="email_UNIQUE">
+    <key id="271" parent="237" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="263" parent="236" name="id_UNIQUE">
+    <key id="272" parent="237" name="id_UNIQUE">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>id_UNIQUE</UnderlyingIndexName>
     </key>

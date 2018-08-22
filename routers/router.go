@@ -40,9 +40,11 @@ func init() {
 	//		http.Redirect(ctx.ResponseWriter, ctx.Request, "/", http.StatusMovedPermanently)
 	//	}
 	//})
+	beego.Router("/", &controllers.MainController{}, "get:Get")
 	ns := beego.NewNamespace("/v1",
 		beego.NSNamespace("/user", beego.NSInclude(&controllers.UserController{})),
 		beego.NSNamespace("/tag", beego.NSInclude(&controllers.TagController{})),
+		beego.NSNamespace("/email", beego.NSInclude(&controllers.EmailController{})),
 	)
 	beego.AddNamespace(ns)
 }

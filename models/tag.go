@@ -3,8 +3,8 @@ package models
 import "github.com/astaxie/beego/orm"
 
 type Tag struct {
-	Id 		int		`orm:"auto"`
-	Name 	string
+	Id 		int		`json:"id" orm:"auto" orm:"column(id)"`
+	Name 	string	`json:"name" orm:"column(name)"`
 }
 
 func init()  {

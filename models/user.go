@@ -5,13 +5,13 @@ import (
 	)
 
 type User struct {
-	Id 		int		`orm:"auto"`
-	Name 	string
-	Sex 	string
-	Age 	int
-	Email 	string
-	Phone 	string
-	Pwd     string
+	Id 		int		`json:"id" orm:"auto" orm:"column(id)"`
+	Name 	string	`json:"name" orm:"column(name)"`
+	Sex 	string	`json:"sex" orm:"column(sex)"`
+	Age 	int		`json:"age" orm:"column(age)"`
+	Email 	string	`json:"email" orm:"column(email)"`
+	Phone 	string 	`json:"phone" orm:"column(phone)"`
+	Pwd     string	`json:"pwd" orm:"column(pwd)"`
 }
 
 type Login struct {

@@ -7,6 +7,22 @@ import (
 
 func init() {
 
+	beego.GlobalControllerRouter["gegis/controllers:EmailController"] = append(beego.GlobalControllerRouter["gegis/controllers:EmailController"],
+		beego.ControllerComments{
+			Method: "Add",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["gegis/controllers:EmailController"] = append(beego.GlobalControllerRouter["gegis/controllers:EmailController"],
+		beego.ControllerComments{
+			Method: "FindByEmail",
+			Router: `/:email`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["gegis/controllers:TagController"] = append(beego.GlobalControllerRouter["gegis/controllers:TagController"],
 		beego.ControllerComments{
 			Method: "Add",
