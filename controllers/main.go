@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"fmt"
+	"gegis/utils"
 )
 
 // 用户管理
@@ -11,6 +11,12 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
-	fmt.Println("Test")
 	this.TplName = "index.tpl"
+}
+
+func (this *MainController) Login() {
+	token := utils.GenToken()
+	this.Ctx.SetCookie("Authorization", token)
+	//this.Data["xsrfdata"] = this.XSRFToken()
+	this.TplName = "login.tpl"
 }

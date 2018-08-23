@@ -330,6 +330,9 @@
                 "pwd": {
                     "type": "string"
                 },
+                "rooms": {
+                    "type": "string"
+                },
                 "sex": {
                     "type": "string"
                 }

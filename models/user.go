@@ -12,6 +12,7 @@ type User struct {
 	Email 	string	`json:"email" orm:"column(email)"`
 	Phone 	string 	`json:"phone" orm:"column(phone)"`
 	Pwd     string	`json:"pwd" orm:"column(pwd)"`
+	Rooms   string  `json:"rooms" orm:"column(rooms)"`
 }
 
 type Login struct {
@@ -39,7 +40,7 @@ func FindAll(o orm.Ormer) ([]User, error) {
 
 func FindById(o orm.Ormer, id int) (User, error) {
 	var user User
-	err := o.QueryTable("user").Filter("Id", id).One(&user, "Id", "name")
+	err := o.QueryTable("user").Filter("id", id).One(&user, "id", "name", "rooms")
 	return user, err
 }
 

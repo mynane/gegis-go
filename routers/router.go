@@ -18,16 +18,17 @@ import (
 
 func auth(ctx *context.Context)  {
 	var token string
-	cookie, err := ctx.Request.Cookie("Authorization")
+	cookie := ctx.GetCookie("Authorization")
 	header := ctx.Request.Header.Get("Authorization")
+	fmt.Println(cookie)
 	if header != "" {
 		token = string(header)
-	} else if cookie.Value != "" {
-		token = string(cookie.Value)
+	} else if cookie != "" {
+		token = string(cookie)
 	}
 	fmt.Println(utils.GenToken())
 	result, error := utils.CheckToken(token)
-	if err != nil || !result {
+	if !result {
 		ctx.Output.Status = http.StatusUnauthorized
 		ctx.Output.Body(utils.NotAuth(error))
 	}
@@ -40,11 +41,16 @@ func init() {
 	//		http.Redirect(ctx.ResponseWriter, ctx.Request, "/", http.StatusMovedPermanently)
 	//	}
 	//})
-	beego.Router("/", &controllers.MainController{}, "get:Get")
+
+	beego.Router("/", 		&controllers.MainController{}, "get:Get")
+	beego.Router("/login", &controllers.MainController{}, "get:Login")
+	beego.Router("/chat", &controllers.ChatController{}, "get:Chat")
+	beego.Router("/ws", &controllers.ChatController{}, "get:WS")
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/user", beego.NSInclude(&controllers.UserController{})),
-		beego.NSNamespace("/tag", beego.NSInclude(&controllers.TagController{})),
-		beego.NSNamespace("/email", beego.NSInclude(&controllers.EmailController{})),
+		beego.NSBefore(auth),
+		beego.NSNamespace("/user", 	beego.NSInclude(&controllers.UserController{})),
+		beego.NSNamespace("/tag",  	beego.NSInclude(&controllers.TagController{})),
+		beego.NSNamespace("/email", 	beego.NSInclude(&controllers.EmailController{})),
 	)
 	beego.AddNamespace(ns)
 }
